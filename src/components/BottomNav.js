@@ -1,4 +1,3 @@
-import React from "react";
 import {
   View,
   Text,
@@ -6,13 +5,12 @@ import {
   StyleSheet,
 } from "react-native";
 
-import { colors } from "../App";
+import { colors } from "../colors";
 
 export default function BottomNav({
   current,
   navigate,
 }) {
-
   const items = [
     ["home", "Início", "⌂"],
     ["monitoring", "Monitoramento", "◉"],
@@ -22,37 +20,48 @@ export default function BottomNav({
 
   return (
     <View style={styles.nav}>
+      {items.map(([key, label, icon]) => {
+        const isActive = current === key;
 
-      {items.map(([key, label, icon]) => (
-
-        <TouchableOpacity
-          key={key}
-          style={styles.item}
-          onPress={() => navigate(key)}
-        >
-
-          <Text
-            style={[
-              styles.icon,
-              current === key && styles.active,
-            ]}
+        return (
+          <TouchableOpacity
+            key={key}
+            style={styles.item}
+            onPress={() => navigate(key)}
+            activeOpacity={0.7}
           >
-            {icon}
-          </Text>
+            <View
+              style={[
+                styles.iconContainer,
+                isActive && styles.iconContainerActive,
+              ]}
+            >
+              <Text
+                style={[
+                  styles.icon,
+                  isActive && styles.active,
+                ]}
+              >
+                {icon}
+              </Text>
+            </View>
 
-          <Text
-            style={[
-              styles.label,
-              current === key && styles.active,
-            ]}
-          >
-            {label}
-          </Text>
+            <Text
+              style={[
+                styles.label,
+                isActive && styles.active,
+              ]}
+              numberOfLines={1}
+            >
+              {label}
+            </Text>
 
-        </TouchableOpacity>
-
-      ))}
-
+            {isActive && (
+              <View style={styles.activeIndicator} />
+            )}
+          </TouchableOpacity>
+        );
+      })}
     </View>
   );
 }
@@ -63,33 +72,68 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     bottom: 0,
-    height: 70,
-    backgroundColor: "#FFFFFF",
+    height: 78,
+    backgroundColor: colors.white,
     borderTopWidth: 1,
     borderTopColor: "#E8EDF1",
     flexDirection: "row",
-    justifyContent: "space-around",
     alignItems: "center",
+    justifyContent: "space-around",
+    paddingTop: 5,
+    paddingBottom: 7,
+    shadowColor: colors.text,
+    shadowOffset: {
+      width: 0,
+      height: -3,
+    },
+    shadowOpacity: 0.04,
+    shadowRadius: 8,
+    elevation: 5,
   },
 
   item: {
-    alignItems: "center",
     width: "25%",
+    height: 66,
+    alignItems: "center",
+    justifyContent: "center",
+    position: "relative",
+  },
+
+  iconContainer: {
+    width: 34,
+    height: 30,
+    borderRadius: 15,
+    alignItems: "center",
+    justifyContent: "center",
+    marginBottom: 2,
+  },
+
+  iconContainerActive: {
+    backgroundColor: colors.lightBlue,
   },
 
   icon: {
     color: "#9AA5AE",
-    fontSize: 20,
-    marginBottom: 2,
+    fontSize: 19,
   },
 
   label: {
     color: "#9AA5AE",
     fontSize: 9,
+    fontWeight: "600",
   },
 
   active: {
     color: colors.blue,
     fontWeight: "800",
+  },
+
+  activeIndicator: {
+    position: "absolute",
+    bottom: 0,
+    width: 18,
+    height: 3,
+    borderRadius: 3,
+    backgroundColor: colors.blue,
   },
 });
