@@ -9,11 +9,11 @@ import {
   StyleSheet,
 } from "react-native";
 
-import Header from "./Header";
-import Card from "./Card";
-import BottomNav from "./BottomNav";
+import Header from "../components/Header";
+import Card from "../components/Card";
+import BottomNav from "../components/BottomNav";
 
-import { colors } from "../App";
+import { colors } from "../../App";
 
 export default function Settings({
   navigate,

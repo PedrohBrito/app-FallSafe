@@ -1,11 +1,10 @@
-import React from "react";
 import {
   TouchableOpacity,
   Text,
   StyleSheet,
 } from "react-native";
 
-import { colors } from "../App";
+import { colors } from "../../App";
 
 export default function Button({
   title,

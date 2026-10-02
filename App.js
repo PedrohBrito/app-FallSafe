@@ -1,13 +1,13 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { SafeAreaView } from "react-native";
 
-import Splash from "./components/Splash";
-import Home from "./components/Home";
-import Monitoring from "./components/Monitoring";
-import FallAlert from "./components/FallAlert";
-import Confirmed from "./components/Confirmed";
-import History from "./components/History";
-import Settings from "./components/Settings";
+import Splash from "./src/sreens/Splash";
+import Home from "./src/sreens/Home";
+import Monitoring from "./src/sreens/Monitoring";
+import FallAlert from "./src/sreens/FallAlart";
+import Confirmed from "./src/sreens/Confirmed";
+import History from "./src/sreens/History";
+import Settings from "./src/sreens/Settings";
 
 export const colors = {
   blue: "#0077B6",

@@ -1,4 +1,3 @@
-import React from "react";
 import {
   View,
   Text,
@@ -6,7 +5,7 @@ import {
   StyleSheet,
 } from "react-native";
 
-import { colors } from "../App";
+import { colors } from "../../App";
 
 export default function Header({
   title,
