@@ -1,5 +1,3 @@
-import React from "react";
-
 import {
   SafeAreaView,
   View,
@@ -8,25 +6,27 @@ import {
   StyleSheet,
 } from "react-native";
 
-import Button from "./Button";
-import { colors } from "../App";
+import Button from "../components/Button";
+import { colors } from "../colors";
 
 export default function FallAlert({
   setScreen,
 }) {
-
   return (
     <SafeAreaView style={styles.safe}>
-
       <View style={styles.container}>
 
-        <View style={styles.circle}>
-
-          <Text style={styles.icon}>
-            !
-          </Text>
-
+        <View style={styles.alertBadge}>
+          <View style={styles.alertCircle}>
+            <Text style={styles.icon}>
+              !
+            </Text>
+          </View>
         </View>
+
+        <Text style={styles.label}>
+          ATENÇÃO
+        </Text>
 
         <Text style={styles.title}>
           Possível queda detectada
@@ -38,45 +38,49 @@ export default function FallAlert({
           Você está bem?
         </Text>
 
-        <View style={styles.timer}>
+        <View style={styles.timerArea}>
+          <View style={styles.timerOuter}>
+            <View style={styles.timer}>
 
-          <Text style={styles.timerText}>
-            30s
-          </Text>
+              <Text style={styles.timerText}>
+                30s
+              </Text>
 
-          <Text style={styles.timerLabel}>
-            até o alerta
-          </Text>
+              <Text style={styles.timerLabel}>
+                até o alerta
+              </Text>
 
+            </View>
+          </View>
         </View>
 
-        <Button
-          title="Estou bem"
-          onPress={() =>
-            setScreen("confirmed")
-          }
-        />
+        <View style={styles.actionArea}>
+          <Button
+            title="Estou bem"
+            onPress={() =>
+              setScreen("confirmed")
+            }
+          />
 
-        <TouchableOpacity
-          onPress={() =>
-            setScreen("history")
-          }
-        >
-
-          <Text style={styles.link}>
-            Ver histórico
-          </Text>
-
-        </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.historyButton}
+            onPress={() =>
+              setScreen("history")
+            }
+            activeOpacity={0.7}
+          >
+            <Text style={styles.link}>
+              Ver histórico
+            </Text>
+          </TouchableOpacity>
+        </View>
 
       </View>
-
     </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
-
   safe: {
     flex: 1,
     backgroundColor: colors.background,
@@ -84,25 +88,45 @@ const styles = StyleSheet.create({
 
   container: {
     flex: 1,
-    padding: 24,
+    paddingHorizontal: 28,
+    paddingVertical: 24,
     alignItems: "center",
     justifyContent: "center",
   },
 
-  circle: {
-    width: 85,
-    height: 85,
-    borderRadius: 43,
+  alertBadge: {
+    width: 108,
+    height: 108,
+    borderRadius: 54,
+    backgroundColor: "#FFF8EC",
+    alignItems: "center",
+    justifyContent: "center",
+    marginBottom: 18,
+  },
+
+  alertCircle: {
+    width: 82,
+    height: 82,
+    borderRadius: 41,
     backgroundColor: "#FFF2DF",
     alignItems: "center",
     justifyContent: "center",
-    marginBottom: 20,
+    borderWidth: 1,
+    borderColor: "#F8D9A3",
   },
 
   icon: {
     color: "#D88900",
-    fontSize: 44,
+    fontSize: 42,
     fontWeight: "900",
+  },
+
+  label: {
+    color: "#D88900",
+    fontSize: 10,
+    fontWeight: "800",
+    letterSpacing: 1.2,
+    marginBottom: 7,
   },
 
   title: {
@@ -117,22 +141,38 @@ const styles = StyleSheet.create({
     fontSize: 14,
     lineHeight: 21,
     textAlign: "center",
-    marginTop: 8,
-    marginBottom: 20,
+    marginTop: 9,
+    marginBottom: 24,
+  },
+
+  timerArea: {
+    alignItems: "center",
+    justifyContent: "center",
+    marginBottom: 28,
+  },
+
+  timerOuter: {
+    width: 126,
+    height: 126,
+    borderRadius: 63,
+    backgroundColor: "#FFF8EC",
+    alignItems: "center",
+    justifyContent: "center",
   },
 
   timer: {
-    width: 110,
-    height: 110,
-    borderRadius: 55,
-    borderWidth: 6,
+    width: 108,
+    height: 108,
+    borderRadius: 54,
+    borderWidth: 5,
     borderColor: "#F0A92D",
+    backgroundColor: colors.white,
     alignItems: "center",
     justifyContent: "center",
   },
 
   timerText: {
-    fontSize: 27,
+    fontSize: 28,
     fontWeight: "800",
     color: colors.text,
   },
@@ -140,12 +180,23 @@ const styles = StyleSheet.create({
   timerLabel: {
     color: colors.muted,
     fontSize: 10,
+    marginTop: 2,
+  },
+
+  actionArea: {
+    width: "100%",
+    alignItems: "center",
+  },
+
+  historyButton: {
+    paddingVertical: 10,
+    paddingHorizontal: 18,
+    marginTop: 10,
   },
 
   link: {
     color: colors.blue,
+    fontSize: 13,
     fontWeight: "700",
-    marginTop: 18,
   },
-
 });

@@ -1,13 +1,12 @@
-import React, { useState } from "react";
-import { SafeAreaView } from "react-native";
+import { useState } from "react";
 
-import Splash from "./components/Splash";
-import Home from "./components/Home";
-import Monitoring from "./components/Monitoring";
-import FallAlert from "./components/FallAlert";
-import Confirmed from "./components/Confirmed";
-import History from "./components/History";
-import Settings from "./components/Settings";
+import Splash from "./src/sreens/Splash";
+import Home from "./src/sreens/Home";
+import Monitoring from "./src/sreens/Monitoring";
+import FallAlert from "./src/sreens/FallAlert";
+import Confirmed from "./src/sreens/Confirmed";
+import History from "./src/sreens/History";
+import Settings from "./src/sreens/Settings";
 
 export const colors = {
   blue: "#0077B6",
@@ -19,18 +18,22 @@ export const colors = {
   white: "#FFFFFF",
 };
 
+const INITIAL_SCREEN = "home";
+
 export default function App() {
   const [started, setStarted] = useState(false);
-  const [screen, setScreen] = useState("home");
+  const [screen, setScreen] = useState(INITIAL_SCREEN);
 
   const navigate = (screenName) => {
     setScreen(screenName);
   };
 
+  // Tela inicial do aplicativo
   if (!started) {
     return <Splash onStart={() => setStarted(true)} />;
   }
 
+  // Navegação principal
   switch (screen) {
     case "monitoring":
       return (
@@ -52,6 +55,7 @@ export default function App() {
     case "settings":
       return <Settings navigate={navigate} />;
 
+    case "home":
     default:
       return (
         <Home

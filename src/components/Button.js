@@ -1,11 +1,10 @@
-import React from "react";
 import {
   TouchableOpacity,
   Text,
   StyleSheet,
 } from "react-native";
 
-import { colors } from "../App";
+import { colors } from "../colors";
 
 export default function Button({
   title,
@@ -15,6 +14,7 @@ export default function Button({
   return (
     <TouchableOpacity
       onPress={onPress}
+      activeOpacity={0.8}
       style={[
         styles.button,
         secondary && styles.secondary,
@@ -34,24 +34,37 @@ export default function Button({
 
 const styles = StyleSheet.create({
   button: {
+    width: "100%",
+    minHeight: 50,
+    borderRadius: 14,
     backgroundColor: colors.blue,
-    minHeight: 48,
-    borderRadius: 13,
     alignItems: "center",
     justifyContent: "center",
     paddingHorizontal: 20,
     marginTop: 15,
-    width: "100%",
+    shadowColor: colors.blue,
+    shadowOffset: {
+      width: 0,
+      height: 4,
+    },
+    shadowOpacity: 0.14,
+    shadowRadius: 7,
+    elevation: 3,
   },
 
   secondary: {
     backgroundColor: "#EAF0F5",
+    borderWidth: 1,
+    borderColor: "#DCE5EB",
+    shadowOpacity: 0,
+    elevation: 0,
   },
 
   text: {
-    color: "#FFFFFF",
+    color: colors.white,
     fontWeight: "800",
     fontSize: 14,
+    letterSpacing: 0.1,
   },
 
   secondaryText: {
