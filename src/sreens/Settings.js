@@ -200,5 +200,4 @@ const styles = StyleSheet.create({
     backgroundColor: "#EEF1F3",
     marginVertical: 12,
   },
-
 });
